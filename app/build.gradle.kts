@@ -30,6 +30,11 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 
+    packaging {
+        jniLibs {
+            useLegacyPackaging = true
+        }
+    }
 }
 
 dependencies {
