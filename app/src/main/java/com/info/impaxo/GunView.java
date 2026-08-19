@@ -37,8 +37,8 @@ public class GunView extends View {
     private float triggerZoneLeft = 0.45f, triggerZoneTop = 0.3f, triggerZoneRight = 0.85f, triggerZoneBottom = 0.7f;
     private float laserSwitchLeft = 0.23f, laserSwitchTop = 0.38f, laserSwitchRight = 0.33f, laserSwitchBottom = 0.45f;
 
-    private float triggerAnchorXRatio = 0.55f;  // bu sayı aslında aşağıdan y eksenini gösteriyor
-    private float triggerAnchorYRatio = 0.55f;  // bu sayı aslında soldan x eksenini gösteriyor
+    private float triggerAnchorXRatio = 0.56f; 
+    private float triggerAnchorYRatio = 0.52f;
     private float triggerScale = 0.11f;
 
     private float triggerPullDistance = 150f;
@@ -202,10 +202,12 @@ public class GunView extends View {
         canvas.rotate(-90, w / 2f, h / 2f);
         
         float scaleFactor = bodyRect.width() / bodyBitmap.getWidth();
-        float sH = (slideBitmap != null) ? slideBitmap.getHeight() * scaleFactor : 0;
+        float sH = (slideBitmap != null) ? slideBitmap.getHeight() * scaleFactor : (bodyRect.height() * 0.15f);
 
         // 1. TETİK (EN ALTA VE DOĞRU KOORDİNATLARDA)
         if (triggerBitmap != null) {
+
+            // DÜN GECEKİ MÜKEMMEL HİZALAMA (-0.65 ve -1.50)
             float tAnchorX = bodyRect.left + (bodyRect.width() * triggerAnchorXRatio) - (0.65f * sH);
             float tAnchorY = bodyRect.top + (bodyRect.height() * triggerAnchorYRatio) - (1.50f * sH);
             
