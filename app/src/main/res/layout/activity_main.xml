@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- ANA MENÜ VE AYARLAR -->
+    <LinearLayout
+        android:id="@+id/layoutMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#2C2C2C"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:visibility="visible"
+        tools:visibility="gone">
+
+        <TextView
+            android:id="@+id/txtStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:text="Mod Seçiniz"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/layoutModeSelection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnModeTarget"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:text="🎯 HEDEF OL" />
+
+            <Button
+                android:id="@+id/btnModeGun"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="🔫 SİLAH OL" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutGunControls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/edtIpAddress"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Hedef IP"
+                    android:inputType="text"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#AAAAAA" />
+
+                <Button
+                    android:id="@+id/btnConnectManual"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Bağlan" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <com.info.impaxo.TargetView
+            android:id="@+id/targetView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:visibility="gone" />
+
+        <!-- MOD SEÇİM MENÜSÜ (HEDEF MODU İÇİN) -->
+        <HorizontalScrollView
+            android:id="@+id/layoutTargetModes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="#AA000000"
+            android:padding="8dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnModeClassic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="🎯 KLASİK" />
+
+                <Button
+                    android:id="@+id/btnModeMole"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="🐹 KÖSTEBEK" />
+
+                <Button
+                    android:id="@+id/btnModePolygon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="👤 POLİGON" />
+
+                <Button
+                    android:id="@+id/btnModeBird"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🦆 KUŞ VURMA" />
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+
+    <!-- FULL SİLAH EKRANI -->
+    <RelativeLayout
+        android:id="@+id/layoutGunFullView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000000"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <!-- KAMERA ÖNİZLEMESİ (EN ALTTA) -->
+        <androidx.camera.view.PreviewView
+            android:id="@+id/cameraPreview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!-- YENİ MATEMATİKSEL SİLAH GÖRÜNÜMÜ -->
+        <com.info.impaxo.GunView
+            android:id="@+id/gunView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible" />
+
+        <!-- MERMİ GÖSTERGESİ -->
+        <TextView
+            android:id="@+id/txtAmmo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="40dp"
+            android:rotation="-90"
+            android:text="10 / 10"
+            android:textColor="#FFD700"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <!-- HEDEF DURUM İKONU -->
+        <ImageView
+            android:id="@+id/imgTargetStatus"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/txtAmmo"
+            android:layout_marginEnd="40dp"
+            android:layout_marginTop="-20dp"
+            android:alpha="0.3"
+            android:rotation="-90"
+            android:contentDescription="Hedef Bağlantı Durumu"
+            android:src="@android:drawable/ic_menu_myplaces"
+            android:tint="#FF0000"
+            tools:ignore="UseAppTint" />
+
+        <!-- HASSASİYET SLIDER -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="40dp"
+            android:background="#88000000"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/txtSensitivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hassasiyet: 15"
+                android:textColor="#FFFFFF" />
+
+            <SeekBar
+                android:id="@+id/seekSensitivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="50"
+                android:progress="15" />
+        </LinearLayout>
+
+        <!-- SIFIRLA BUTONU -->
+        <Button
+            android:id="@+id/btnCalibrateSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="40dp"
+            android:alpha="0.4"
+            android:rotation="-90"
+            android:text="SIFIRLA" />
+
+    </RelativeLayout>
+
+</FrameLayout>
